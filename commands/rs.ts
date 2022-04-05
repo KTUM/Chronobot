@@ -61,7 +61,8 @@ export default {
                 .addFields(
                     {name: `Score`, value: `${scores[0].score}`},
                     {name: `Pp`, value: `${scores[0].pp}` },
-                    {name: `Misses`, value: `${scores[0].count_miss}`}
+                    {name: `Misses`, value: `${scores[0].count_miss}`},
+                    {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}
 
                 )
                 .setFooter({text: `Set on Chronoskia Osu Server`, iconURL:`${base_url}/static/images/icon.png`})

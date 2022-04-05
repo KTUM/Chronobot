@@ -53,7 +53,7 @@ export default {
             try {
             
                 const embed = new DiscordJS.MessageEmbed()
-                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${scores[0].beatmap.difficulty}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
+                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
                 .setColor(`#aa3399`)
                 .setTitle(`Tap To Download`)
                 .setURL(`${base_url}/b/${scores[0].id}`) 

@@ -66,15 +66,7 @@ export default {
                 )
                 .setFooter({text: `Set on Chronoskia Osu Server`, iconURL:`${base_url}/static/images/icon.png`})
                 return embed;
-                
-               /*
-                const embed = new MessageEmbed()
-                    .setThumbnail(`https://a.chronoskia.com/${id_check.id}`)
-                    .setDescription(
-                        `${response.username}\n set score on ${scores[0].beatmap.song_name} worth ${scores[0].pp}\npp Score:${scores[0].score}\n Misses:${scores[0].count_miss}`
-                    );
-                return embed;
-                */
+          
             } catch (error) {
                 const embed = new MessageEmbed()
                     .setTitle(`ERORR: ${response.error.status}`)

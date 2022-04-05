@@ -6,7 +6,7 @@ import axios from 'axios';
 import { format } from "morgan";
 const base_url = 'https://osu.chronoskia.com'
 const osuass_url = "https://assets.ppy.sh/beatmaps/"
-const gataribmap_url = "https://gatari.pw/d/"
+const gataribmap_url = "https://osu.gatari.pw/d/"
 export default {
     category: 'Test',
     description: 'Recent play',
@@ -57,7 +57,7 @@ export default {
                 .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
                 .setColor(`#aa3399`)
                 .setTitle(`Tap To Download`)
-                .setURL(`${base_url}/b/${scores[0].id}`)
+                .setURL(`${gataribmap_url}/${scores[0].id}`)
                 // .setURL(`${gataribmap_url}/${scores[0].id`)
                 .setDescription(`${response.username} aka (${response.username_aka}) set score on ${scores[0].beatmap.song_name}`)
                 .addFields(

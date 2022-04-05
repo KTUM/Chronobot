@@ -6,6 +6,7 @@ import axios from 'axios';
 import { format } from "morgan";
 const base_url = 'https://osu.chronoskia.com'
 const osuass_url = "https://assets.ppy.sh/beatmaps/"
+const gataribmap_url = "https://gatari.pw/d/"
 export default {
     category: 'Test',
     description: 'Recent play',
@@ -43,7 +44,7 @@ export default {
             );
             const scores = data.scores
             
-            console.log(data.scores)
+            // console.log(data.scores)
             var if_aka;
             if (!response.username_aka) {
                 if_aka = "";
@@ -56,16 +57,18 @@ export default {
                 .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
                 .setColor(`#aa3399`)
                 .setTitle(`Tap To Download`)
-                .setURL(`${base_url}/b/${scores[0].id}`) 
-                .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
+                .setURL(`${base_url}/b/${scores[0].id}`)
+                // .setURL(`${gataribmap_url}/${scores[0].id`)
+                .setDescription(`${response.username} aka (${response.username_aka}) set score on ${scores[0].beatmap.song_name}`)
                 .addFields(
                     {name: `Score`, value: `${scores[0].score}`},
                     {name: `Pp`, value: `${scores[0].pp}` },
                     {name: `Misses`, value: `${scores[0].count_miss}`},
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}
+                    // reorganize the design of the embed
 
                 )
-                .setFooter({text: `Set on Chronoskia Osu Server`, iconURL:`${base_url}/static/images/icon.png`})
+                .setFooter({text: `Set on Chronoskia Server`, iconURL:`${base_url}/static/images/icon.png`})
                 return embed;
           
             } catch (error) {

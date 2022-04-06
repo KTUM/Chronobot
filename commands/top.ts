@@ -57,10 +57,10 @@ export default {
                 .setColor(`#aa3399`)
                 .setTitle(`Tap To Download`)
                 .setURL(`${gataribmap_url}/${scores[0].beatmap.beatmapset_id}`)
-                .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
+                .setDescription(`${response.username} AKA ${if_aka} set score on ${scores[0].beatmap.song_name}`)
                 .addFields(
                     {name: `Score`, value: `${scores[0].score}`},
-                    {name: `Pp`, value: `${scores[0].pp}` },
+                    {name: `Pp`, value: `${Math.round(scores[0].pp)}` },
                     {name: `Misses`, value: `${scores[0].count_miss}`},
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}
 

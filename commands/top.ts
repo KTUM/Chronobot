@@ -32,7 +32,8 @@ export default {
         
             console.log(id_check);
             if (!id_check.id) {
-                Error;
+                console.error("no id")
+                //Error;
             }
         
             var { data } = await axios.get(

@@ -66,6 +66,7 @@ export default {
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}
 
                 )
+                .setFooter({text: `Set on Chronskia Osu server`, iconURL: `${base_url}/static/images/icon.png`})
                 return embed;
             } catch (error){
                 console.log(response.error)

@@ -74,12 +74,25 @@ export default {
             }
             var final_playtime = playtime.toPrecision(3)
             const embed = new MessageEmbed()
+                .setAuthor({name: `${response.username} ${if_aka}`})
+                .setColor(`#aa3399`)
+                .setURL(`${base_url}/u/${id_check.id}`)
                 .setThumbnail(`https://a.chronoskia.com/${id_check.id}`)
-                .setDescription(`${response.username} ${if_aka}\n\nRank: #${response.std.global_leaderboard_rank}\nPP: ${response.std.pp}\nAccuracy: ${Math.round(response.std.accuracy)}%\nPlaycount: ${response.std.playcount}\nTotal Hits: ${response.std.total_hits}\nPlaytime: ${final_playtime} ${type_of_playtime}\n` )
+                .setFooter({text: `Chronoskia Osu server`, iconURL: `${base_url}/static/images/icon.png`})
+                .addFields(
+                    {name: `Rank:`, value: `${response.std.global_leaderboard_rank}`},
+                    {name: `Pp:`, value: `${response.std.pp}`},
+                    {name: `Accuracy:`, value: `${Math.round(response.std.accuracy)}`},
+                    {name: `Playcount:`, value: `${response.std.playcount}`},
+                    {name: `Total Hits:`, value: `${response.std.total_hits}`},
+                    {name: `Playtime:`, value: `${final_playtime}${type_of_playtime}`}
+                )
+                //.setDescription(`${response.username} ${if_aka}\n\nRank: #${response.std.global_leaderboard_rank}\nPP: ${response.std.pp}\nAccuracy: ${Math.round(response.std.accuracy)}%\nPlaycount: ${response.std.playcount}\nTotal Hits: ${response.std.total_hits}\nPlaytime: ${final_playtime} ${type_of_playtime}\n` )
             return embed
         } catch (error) {
             const embed = new MessageEmbed()
                 .setTitle(`ERROR: ${error.response.status}`)
+                .setColor(`RED`)
                 .setDescription(error.response.data.message)
             return embed
         }

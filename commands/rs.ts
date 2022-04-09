@@ -44,6 +44,7 @@ export default {
             );
             const scores = data.scores
             
+            
             console.log(data.scores)
             var if_aka;
             if (!response.username_aka) {
@@ -51,13 +52,15 @@ export default {
             } else {
                 if_aka = `AKA ${response.username_aka}`;
             }
-            try {
+            // hopefully actually gets the star rating how i want it to be (not implementing the star fix yet)
             
+            try {
                 const embed = new MessageEmbed()
-                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
+                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`}, )
                 .setColor(`#aa3399`)
+                .setThumbnail(`https://b.ppy.sh/thumb/${scores[0].beatmap.beatmapset_id}l.jpg`)
                 .setTitle(`Tap To Download`)
-                .setURL(`${gataribmap_url}/${scores[0].beatmap.beatmapset_id}`)
+                .setURL(`https://osu.ppy.sh/beatmapsets/${scores[0].beatmap.beatmapset_id}`)
                 .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
                 .addFields(
                     {name: `Score`, value: `${scores[0].score}`},
@@ -68,7 +71,7 @@ export default {
                 .setFooter({text: `Set on Chronoskia Server`, iconURL:`${base_url}/static/images/icon.png`})
                 return embed;
           
-            } catch (error) {
+            } catch(error){
                 const embed = new MessageEmbed()
                     .setTitle(`ERORR: ${response.error.status}`)
                     .setDescription(error.response.data.message);

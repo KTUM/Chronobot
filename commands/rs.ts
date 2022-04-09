@@ -51,7 +51,7 @@ export default {
             } else {
                 if_aka = `AKA ${response.username_aka}`;
             }
-            // hopefully actually gets the star rating how i want it to be (not implementing the star fix yet)
+            // hopefully actually gets the star rating how i want it to be
             var sr = scores[0].beatmap.difficulty          
             var star_rating = sr.toFixed(2)
             try {

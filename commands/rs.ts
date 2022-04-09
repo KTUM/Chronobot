@@ -6,7 +6,6 @@ import axios from 'axios';
 import { format } from "morgan";
 const base_url = 'https://osu.chronoskia.com'
 const osuass_url = "https://assets.ppy.sh/beatmaps/"
-const gataribmap_url = "https://osu.gatari.pw/d"
 export default {
     category: 'Test',
     description: 'Recent play',
@@ -53,10 +52,11 @@ export default {
                 if_aka = `AKA ${response.username_aka}`;
             }
             // hopefully actually gets the star rating how i want it to be (not implementing the star fix yet)
-            
+            var sr = scores[0].beatmap.difficulty          
+            var star_rating = sr.toFixed(2)
             try {
                 const embed = new MessageEmbed()
-                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`}, )
+                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`}, )
                 .setColor(`#aa3399`)
                 .setThumbnail(`https://b.ppy.sh/thumb/${scores[0].beatmap.beatmapset_id}l.jpg`)
                 .setTitle(`Tap To Download`)

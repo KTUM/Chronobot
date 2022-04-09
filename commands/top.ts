@@ -7,7 +7,7 @@ import { format } from "morgan";
 import { InviteTargetType } from "discord.js/typings/enums";
 const base_url = 'https://osu.chronoskia.com';
 const avatar_url = 'https://a.chornoskia.com';
-const gataribmap_url = 'https://osu.gatari.pw/d'
+const osu_url = `https://osu.ppy.sh/beatmapsets/`;
 export default {
     category : "Osutop",
     description : "Shows top play",
@@ -52,12 +52,15 @@ export default {
 
             var scores = data.scores
 
+            
+
             try{
                 const embed = new MessageEmbed()
-                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
+                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `${avatar_url}/${id_check.id}`})
                 .setColor(`#aa3399`)
                 .setTitle(`Tap To Download`)
-                .setURL(`${gataribmap_url}/${scores[0].beatmap.beatmapset_id}`)
+                .setURL(`${osu_url}${scores[0].beatmap.beatmapset_id}`)
+                .setThumbnail(`https://b.ppy.sh/thumb/${scores[0].beatmap.beatmapset_id}1.png`)
                 .setDescription(`${response.username} AKA ${if_aka} set score on ${scores[0].beatmap.song_name}`)
                 .addFields(
                     {name: `Score`, value: `${scores[0].score}`},

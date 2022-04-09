@@ -81,6 +81,7 @@ export default {
                 .setFooter({text: `Chronoskia Osu server`, iconURL: `${base_url}/static/images/icon.png`})
                 .addFields(
                     {name: `Rank:`, value: `${response.std.global_leaderboard_rank}`},
+                    {name: `Country:`, value: `:flag_${response.country.toLowerCase()}: ${response.std.country_leaderboard_rank}`},
                     {name: `Pp:`, value: `${response.std.pp}`},
                     {name: `Accuracy:`, value: `${Math.round(response.std.accuracy)}`},
                     {name: `Playcount:`, value: `${response.std.playcount}`},

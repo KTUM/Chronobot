@@ -5,7 +5,7 @@ This only works on ripple/ainu based servers and not asashi or gulag so if you h
 The ripple docs will only work for ripple APIs so if you are using your own like chronoAPI for example you are on your own.
 To use the bot on your discord server remember to change the guild1 id to the one of your server in the index.ts file.
 Change the base url to the domain of your website so it would be osu.server_url.whatever.
-This bot does not work for bancho scores so just dont try it unless you add the parameters for it which cn be found at the osu API v2 wiki https://osu.ppy.sh/wiki/en/osu%21api
+This bot does not work for bancho scores so just dont try it unless you add the parameters for it which can be found at the osu API v2 wiki https://osu.ppy.sh/wiki/en/osu%21api and the v1 https://github.com/ppy/osu-api/wiki
 # Requirements
 Node & npm
 discord token you can get from https://discord.com/developers

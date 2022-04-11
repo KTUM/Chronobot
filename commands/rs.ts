@@ -45,26 +45,57 @@ export default {
             
             
             console.log(data.scores)
-            var if_aka;
-            if (!response.username_aka) {
-                if_aka = "";
-            } else {
-                if_aka = `AKA ${response.username_aka}`;
-            }
-            // hopefully actually gets the star rating how i want it to be
+            // Star rating and pp fix
             var sr = scores[0].beatmap.difficulty          
             var star_rating = sr.toFixed(2)
-            try {
+            var pp = scores[0].pp
+            var fixed_pp = pp.toFixed(2)
+            /* for future reference
+            enum Modes{
+                "osu!" = 0,
+                "Taiko" = 1,
+                "CtB" = 2,
+                "mania" = 3,
+
+            }
+            */
+            // var mods = require(`./sebs_stuff/mods`)
+            // mods
+            var type_of_mod = ``
+            if (scores[0].mods >= 64) {
+                type_of_mod = `***DT***`
+                console.log(`DT is selected`)
+            }else if (scores[0].mods >= 0){
+                type_of_mod = "***NM***"
+                console.log(`No mods are selected`)
+            }else if (scores[0].mods >= 15){
+                type_of_mod = "***HR***"
+                console.log(`Hardrock is selected`)
+            }else if (scores[0].mods >= 8){
+                type_of_mod = "***HD***"
+                console.log(`Hidden is selected`)
+            }else if (scores[0].mods >= 64 + 8){
+                type_of_mod = "***HDDT***"
+                console.log(`Hidden DoubleTime is selected`)
+            }else if (scores[0].mods >= 128){
+                type_of_mod = "***RX***"
+                console.log(`Relax is selected`)
+            }else if (scores[0].mods >= 1024){
+                type_of_mod = "***FL***"
+                console.log(`Flashlight is selected`)
+            }
+            try { 
                 const embed = new MessageEmbed()
-                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`}, )
+                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
                 .setColor(`#aa3399`)
                 .setThumbnail(`https://b.ppy.sh/thumb/${scores[0].beatmap.beatmapset_id}l.jpg`)
                 .setTitle(`Tap To Download`)
                 .setURL(`https://osu.ppy.sh/beatmapsets/${scores[0].beatmap.beatmapset_id}`)
                 .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
                 .addFields(
+                    {name: `Mods`, value: `${type_of_mod}` },
                     {name: `Score`, value: `${scores[0].score}`},
-                    {name: `Pp`, value: `${Math.round(scores[0].pp)}` },
+                    {name: `Pp`, value: `${fixed_pp}` },
                     {name: `Misses`, value: `${scores[0].count_miss}`},
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}
                 )
@@ -73,10 +104,10 @@ export default {
           
             } catch(error){
                 const embed = new MessageEmbed()
-                    .setTitle(`ERORR: ${response.error.status}`)
-                    .setDescription(error.response.data.message);
-                    console.log(error)
-                return embed;
+                .setTitle(`ERROR: ${error.response.status}`)
+                .setColor(`RED`)
+                .setDescription(error.response.data.message)
+            return embed;
                 
             }
         }catch(error){

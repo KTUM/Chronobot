@@ -65,6 +65,8 @@ export default {
             if (playtime >= 60) {
                 playtime = (playtime / 60)
             }
+
+           
             //aka check
             var if_aka
             if (!response.username_aka) {
@@ -73,22 +75,23 @@ export default {
                 if_aka = `AKA ${response.username_aka}`
             }
             var final_playtime = playtime.toPrecision(3)
+           
             const embed = new MessageEmbed()
-                .setAuthor({name: `${response.username} ${if_aka}`})
+                .setAuthor({name: `${response.username} ${if_aka}`, iconURL: `${base_url}/static`})
                 .setColor(`#aa3399`)
                 .setURL(`${base_url}/u/${id_check.id}`)
                 .setThumbnail(`https://a.chronoskia.com/${id_check.id}`)
                 .setFooter({text: `Chronoskia Osu server`, iconURL: `${base_url}/static/images/icon.png`})
                 .addFields(
-                    {name: `Rank:`, value: `${response.std.global_leaderboard_rank}`},
-                    {name: `Country:`, value: `:flag_${response.country.toLowerCase()}: ${response.std.country_leaderboard_rank}`},
+                    {name: `Rank:`, value: `#${response.std.global_leaderboard_rank}`},
+                    {name: `Country Rank:`,  value:`:flag_${response.country.toLowerCase()}: #${response.std.country_leaderboard_rank} `},
                     {name: `Pp:`, value: `${response.std.pp}`},
-                    {name: `Accuracy:`, value: `${Math.round(response.std.accuracy)}`},
+                    {name: `Accuracy:`, value: `${response.std.accuracy.toFixed(2)}%`},
                     {name: `Playcount:`, value: `${response.std.playcount}`},
                     {name: `Total Hits:`, value: `${response.std.total_hits}`},
-                    {name: `Playtime:`, value: `${final_playtime}${type_of_playtime}`}
+                    {name: `Playtime:`, value: `${final_playtime} ${type_of_playtime}`}
                 )
-                //.setDescription(`${response.username} ${if_aka}\n\nRank: #${response.std.global_leaderboard_rank}\nPP: ${response.std.pp}\nAccuracy: ${Math.round(response.std.accuracy)}%\nPlaycount: ${response.std.playcount}\nTotal Hits: ${response.std.total_hits}\nPlaytime: ${final_playtime} ${type_of_playtime}\n` )
+               
             return embed
         } catch (error) {
             const embed = new MessageEmbed()

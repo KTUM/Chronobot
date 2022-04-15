@@ -33,7 +33,7 @@ export default {
             console.log(id_check);
             if (!id_check.id) {
                 console.error("no id")
-                //Error;
+                Error;
             }
         
             var { data } = await axios.get(
@@ -52,19 +52,23 @@ export default {
 
             var scores = data.scores
 
-            
+            // Star rating and pp fix (not really obviously)
+            var sr = scores[0].beatmap.difficulty          
+            var star_rating = sr.toFixed(2)
+            var pp = scores[0].pp
+            var fixed_pp = pp.toFixed(2)
 
             try{
                 const embed = new MessageEmbed()
-                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${Math.round(scores[0].beatmap.difficulty)}`, iconURL: `${avatar_url}/${id_check.id}`})
+                .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
                 .setColor(`#aa3399`)
                 .setTitle(`Tap To Download`)
                 .setURL(`${osu_url}${scores[0].beatmap.beatmapset_id}`)
-                .setThumbnail(`https://b.ppy.sh/thumb/${scores[0].beatmap.beatmapset_id}1.png`)
-                .setDescription(`${response.username} AKA ${if_aka} set score on ${scores[0].beatmap.song_name}`)
-                .addFields(
+                .setThumbnail(`https://b.ppy.sh/thumb/${scores[0].beatmap.beatmapset_id}l.jpg`)
+                .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
+                .addFields( 
                     {name: `Score`, value: `${scores[0].score}`},
-                    {name: `Pp`, value: `${Math.round(scores[0].pp)}` },
+                    {name: `Pp`, value: `${fixed_pp}` },
                     {name: `Misses`, value: `${scores[0].count_miss}`},
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}
 

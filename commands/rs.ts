@@ -50,40 +50,189 @@ export default {
             var star_rating = sr.toFixed(2)
             var pp = scores[0].pp
             var fixed_pp = pp.toFixed(2)
-            /* for future reference
-            enum Modes{
-                "osu!" = 0,
-                "Taiko" = 1,
-                "CtB" = 2,
-                "mania" = 3,
+            // mod constants
+            const _loggedMods = {
+                "std": {
+                    "EZ": 2,
+                    "NF": 1,
+                    "HT": 256,
+                    "NM": 0,
+            
+                    "HR": 16,
+                    "SD": 32,
+                    "PF": 16384,
+                    "DT": 64,
+                    "NC": 512,
+                    "HD": 8,
+                    "FL": 1024,
+            
+                    "RX": 128,
+                    "AP": 8192,
+                    "SO": 4096,
+                    "Auto": 0,
+                    "Cinema": 0,
+                    "ScoreV2": 0
 
+                },
+                "taiko": {
+                    "EZ": 2,
+                    "NF": 1,
+                    "HT": 256,
+            
+                    "HR": 16,
+                    "SD": 32,
+                    "PF": 16384,
+                    "DT": 64,
+                    "NC": 512,
+                    "HD": 8,
+                    "FL": 1024,
+            
+                    "RX": 128,
+                    "Auto": 0,
+                    "Cinema": 0,
+                    "ScoreV2": 0
+                },
+            
+                "ctb": {
+                    "EZ": 2,
+                    "NF": 1,
+                    "HT": 256,
+            
+                    "HR": 16,
+                    "SD": 32,
+                    "PF": 16384,
+                    "DT": 64,
+                    "NC": 512,
+                    "HD": 8,
+                    "FL": 1024,
+            
+                    "RX": 128,
+                    "Auto": 0,
+                    "Cinema": 0,
+                    "ScoreV2": 0
+                },
+            
+                "mania": {
+                    "EZ": 2,
+                    "NF": 1,
+                    "HT": 256,
+            
+                    "HR": 16,
+                    "SD": 32,
+                    "PF": 16384,
+                    "DT": 64,
+                    "NC": 512,
+                    "FI": 1048576,
+                    "HD": 8,
+                    "FL": 1024,
+            
+                    "K1": 0,
+                    "K2": 0,
+                    "K3": 0,
+                    "K4": 32768,
+                    "K5": 65536,
+                    "K6": 131072,
+                    "K7": 262144,
+                    "K8": 524288,
+                    "K9": 16777216,
+            
+            
+                    "MR": 1073741824,
+                    "RD": 0,
+                    "Auto": 0,
+                    "Cinema": 0,
+                    "ScoreV2": 0
+                }
             }
-            */
-            // var mods = require(`./sebs_stuff/mods`)
-            // mods
+            // will add other mods later after i reformat code
+            var mods = _loggedMods
+            var std = mods.std
             var type_of_mod = ``
-            if (scores[0].mods >= 64) {
+            if (scores[0].mods >= std.DT) {
                 type_of_mod = `***DT***`
                 console.log(`DT is selected`)
-            }else if (scores[0].mods >= 0){
+            }else if (scores[0].mods >= std.NM){
                 type_of_mod = "***NM***"
                 console.log(`No mods are selected`)
-            }else if (scores[0].mods >= 15){
+            }else if (scores[0].mods >= std.HR){
                 type_of_mod = "***HR***"
                 console.log(`Hardrock is selected`)
-            }else if (scores[0].mods >= 8){
+            }else if (scores[0].mods >= std.HD){
                 type_of_mod = "***HD***"
                 console.log(`Hidden is selected`)
-            }else if (scores[0].mods >= 64 + 8){
+            }else if (scores[0].mods >= std.HD + std.DT){
                 type_of_mod = "***HDDT***"
                 console.log(`Hidden DoubleTime is selected`)
-            }else if (scores[0].mods >= 128){
+            }else if (scores[0].mods >= std.RX){
                 type_of_mod = "***RX***"
                 console.log(`Relax is selected`)
-            }else if (scores[0].mods >= 1024){
+            }else if (scores[0].mods >= std.FL){
                 type_of_mod = "***FL***"
                 console.log(`Flashlight is selected`)
             }
+            // mode consts & detection
+            const play_mode = {
+                "std" : 0,
+                "taiko": 1,
+                "Ctb": 2,
+                "mania": 3, 
+            }
+            var mode = ``
+            if (scores[0].play_mode >= play_mode.std){
+                mode = "Standard"
+                console.log(mode)
+            }else if (scores[0].play_mode >= play_mode.taiko){
+                mode = "taiko"
+                console.log(mode)
+            }else if (scores[0].play_mode >= play_mode.mania){
+                mode = "mania"
+                console.log(mode)
+            }else if (scores[0].play_mode >= play_mode.Ctb){
+                mode = "catch"
+                console.log(mode)
+            } else {
+                Error;
+                
+            }
+            // star rating v2
+            /*
+            var oppai = require(`ojsama`)
+            var parser = new oppai.parser()
+            var map = parser.map
+            var sr = new oppai.diff().calc({map: map, mods: mods});
+            var res = oppai.ppv2({
+                stars: sr,
+                combo: combo,
+                nmiss: nmiss,
+                acc_percent: acc_percent
+            });
+            var final_diffuculty = ``
+            if (scores[0].mods >= std.NM){
+                console.log(`sr stays the same`)
+            }else {
+                final_diffuculty = sr + oppai.modbits.string(mods)
+                .join(mods), res.stars
+            }
+            */
+            // Dont mind this ill make this work later
+            /* star_str, _ = compare_val(best_beatmaps[i]['difficultyrating'], oppai_info, param = 'stars', dec_places = 2, single = True)
+            info += '**{}[{} [{}]]({}) +{}** [{}★]\n'.format(
+                number, best_beatmaps[i]['title'],
+                best_beatmaps[i]['version'], beatmap_url,
+                fix_mods(''.join(mods)), star_str)
+
+            # choke text
+            choke_text = ''
+            if (oppai_info != None and userbest[i]['countmiss'] != None and best_beatmaps[i]['max_combo']!= None) and (int(userbest[i]['countmiss'])>=1 or (int(userbest[i]['maxcombo']) <= 0.95*int(best_beatmaps[i]['max_combo']) and 'S' in userbest[i]['rank'])):
+                choke_text += ' _({:.2f}pp for FC)_'.format(oppai_info['pp'][0])
+            info += '▸ **{} Rank** ▸ **{:.2f}pp**{} ▸ {:.2f}%\n'.format(userbest[i]['rank'], float(userbest[i]['pp']), choke_text, float(best_acc[i]))
+            info += '▸ {} ▸ x{}/{} ▸ [{}/{}/{}/{}]\n'.format(
+                userbest[i]['score'],
+                userbest[i]['maxcombo'], best_beatmaps[i]['max_combo'],
+                userbest[i]['count300'],userbest[i]['count100'],userbest[i]['count50'],userbest[i]['countmiss']
+                )
+
+            */
             try { 
                 const embed = new MessageEmbed()
                 .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
@@ -93,6 +242,7 @@ export default {
                 .setURL(`https://osu.ppy.sh/beatmapsets/${scores[0].beatmap.beatmapset_id}`)
                 .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
                 .addFields(
+                    {name: `Gamemode`, value: `${mode}`},
                     {name: `Mods`, value: `${type_of_mod}` },
                     {name: `Score`, value: `${scores[0].score}`},
                     {name: `Pp`, value: `${fixed_pp}` },

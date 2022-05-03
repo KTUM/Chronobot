@@ -28,7 +28,7 @@ client.on('ready', () => {
        commandsDir: path.join(__dirname, 'commands'),
        typeScript: true,
        testServers: [guild1],
-       mongoUri: 'mongodb+srv://root:root@cluster0.wutwf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+       mongoUri: '',
        dbOptions: {
            keepAlive: true,
        }

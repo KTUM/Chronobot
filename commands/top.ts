@@ -57,7 +57,8 @@ export default {
             var star_rating = sr.toFixed(2)
             var pp = scores[0].pp
             var fixed_pp = pp.toFixed(2)
-
+            var ac = scores[0].accuracy
+            const acc = ac.toFixed(2)
             try{
                 const embed = new MessageEmbed()
                 .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
@@ -68,7 +69,7 @@ export default {
                 .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
                 .addFields( 
                     {name: `Score`, value: `${scores[0].score}`},
-                    {name: `Accuracy`, value:`${scores[0].accuracy`},
+                    {name: `Accuracy`, value:`${`acc`},
                     {name: `Pp`, value: `${fixed_pp}` },
                     {name: `Misses`, value: `${scores[0].count_miss}`},
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}

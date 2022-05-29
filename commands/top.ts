@@ -69,7 +69,7 @@ export default {
                 .setDescription(`${response.username} set score on ${scores[0].beatmap.song_name}`)
                 .addFields( 
                     {name: `Score`, value: `${scores[0].score}`},
-                    {name: `Accuracy`, value:`${`acc`},
+                    {name: `Accuracy`, value:`${acc}`},
                     {name: `Pp`, value: `${fixed_pp}` },
                     {name: `Misses`, value: `${scores[0].count_miss}`},
                     {name: `Combo`, value: `${scores[0].max_combo}/${scores[0].beatmap.max_combo}`}

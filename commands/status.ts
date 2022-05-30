@@ -7,7 +7,6 @@ import { format } from "morgan";
 const bancho_url = `c.chronoskia.com`
 const chronoapi_url = `osu.chronoskia.com/chronoapi`
 const base_url = `osu.chronoskia.com`
-const lets_url = `http://localhost:5002`
 export default {
     category: 'Test',
     description: 'Bancho status',
@@ -72,8 +71,8 @@ export default {
                 .setDescription(`Displays the status of the server`)
                 .addFields(
                     {name: `ChronoAPI Status:`, value: `${status}`},
-                    {name: `Bancho Status:`, value: `${bancho_on}`},
-                    {name: `LETS Status:`, value: `${LETS_status}`}
+                    {name: `Bancho Status:`, value: `${bancho_on}`}
+                    //{name: `LETS Status:`, value: `${LETS_status}`} rather not 
 
                 )
                 .setFooter({text: `Chronoskia server status`, iconURL:`${base_url}/static/images/icon.png`})

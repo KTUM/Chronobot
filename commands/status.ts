@@ -9,28 +9,7 @@ const chronoapi_url = `osu.chronoskia.com/chronoapi`
 const base_url = `osu.chronoskia.com`
 export default {
     category: 'Test',
-    description: 'Bancho status',
-    options: [
-        {
-            name: 'bancho',
-            description: 'displays pep.py status',
-            type: 'BOOLEAN',
-            required: true
-        },
-        {
-            name: 'LETS',
-            description: 'displays LETS status',
-            type: 'BOOLEAN',
-            required: true
-        },
-        {
-            name: 'API',
-            description: 'displays chronoapi status',
-            type: 'BOOLEAN',
-            required: true
-        }
-
-    ], 
+    description: 'Bancho status', 
     slash: true,
     testOnly: true,
     callback: async ({ message, interaction, args, user}) => {
@@ -61,7 +40,7 @@ export default {
                 bancho_on = `Online`
             }
            // check if LETS is offline or online. kinda sad how the admin panel still cant do this simple thing
-          // too lazy to finish :/
+          // waiting for better solution
 
             try {
                 const embed = new MessageEmbed()

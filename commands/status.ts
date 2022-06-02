@@ -3,10 +3,11 @@ import DiscordJS, { ApplicationCommand, CommandInteractionOptionResolver, Intent
 import dotenv from 'dotenv'
 import WOKCommands from 'wokcommands'
 import axios from 'axios';
+import fetch from 'node-fetch'
 import { format } from "morgan";
-const bancho_url = `c.chronoskia.com`
-const chronoapi_url = `osu.chronoskia.com/chronoapi`
-const base_url = `osu.chronoskia.com`
+const bancho_url = `https://c.chronoskia.com`
+const chronoapi_url = `https://osu.chronoskia.com/chronoapi`
+const base_url = `https://osu.chronoskia.com`
 export default {
     category: 'Test',
     description: 'Bancho status', 
@@ -15,11 +16,10 @@ export default {
     callback: async ({ message, interaction, args, user}) => {
         try {
             // check if api is online
-            var {data} = await axios.get(
-                `${chronoapi_url}`);
+            var { data } = await axios.get(`${chronoapi_url}`);
             
-            var status = data.status
-
+            var status = data.Status
+            console.log(`${data.Status}`)
             if (!status){
                 Error
                 console.log(`API is offline`)
@@ -41,6 +41,8 @@ export default {
             }
            // check if LETS is offline or online. kinda sad how the admin panel still cant do this simple thing
           // waiting for better solution
+            const lets_url = `https://osu.chronoskia.com:5002`
+            
 
             try {
                 const embed = new MessageEmbed()
@@ -66,6 +68,8 @@ export default {
             return embed;
             }
 
-        } catch {}
+        } catch(error) {
+            console.log(error)
+        }
     }
 }

@@ -194,45 +194,7 @@ export default {
                 Error;
                 
             }
-            // star rating v2
-            /*
-            var oppai = require(`ojsama`)
-            var parser = new oppai.parser()
-            var map = parser.map
-            var sr = new oppai.diff().calc({map: map, mods: mods});
-            var res = oppai.ppv2({
-                stars: sr,
-                combo: combo,
-                nmiss: nmiss,
-                acc_percent: acc_percent
-            });
-            var final_diffuculty = ``
-            if (scores[0].mods >= std.NM){
-                console.log(`sr stays the same`)
-            }else {
-                final_diffuculty = sr + oppai.modbits.string(mods)
-                .join(mods), res.stars
-            }
-            */
-            // Dont mind this ill make this work later
-            /* star_str, _ = compare_val(best_beatmaps[i]['difficultyrating'], oppai_info, param = 'stars', dec_places = 2, single = True)
-            info += '**{}[{} [{}]]({}) +{}** [{}★]\n'.format(
-                number, best_beatmaps[i]['title'],
-                best_beatmaps[i]['version'], beatmap_url,
-                fix_mods(''.join(mods)), star_str)
-
-            # choke text
-            choke_text = ''
-            if (oppai_info != None and userbest[i]['countmiss'] != None and best_beatmaps[i]['max_combo']!= None) and (int(userbest[i]['countmiss'])>=1 or (int(userbest[i]['maxcombo']) <= 0.95*int(best_beatmaps[i]['max_combo']) and 'S' in userbest[i]['rank'])):
-                choke_text += ' _({:.2f}pp for FC)_'.format(oppai_info['pp'][0])
-            info += '▸ **{} Rank** ▸ **{:.2f}pp**{} ▸ {:.2f}%\n'.format(userbest[i]['rank'], float(userbest[i]['pp']), choke_text, float(best_acc[i]))
-            info += '▸ {} ▸ x{}/{} ▸ [{}/{}/{}/{}]\n'.format(
-                userbest[i]['score'],
-                userbest[i]['maxcombo'], best_beatmaps[i]['max_combo'],
-                userbest[i]['count300'],userbest[i]['count100'],userbest[i]['count50'],userbest[i]['countmiss']
-                )
-
-            */
+   // ill fix the problem where HDDT mods are being a bitch and not showing up since i am restarting the server again after like 5 months
             try { 
                 const embed = new MessageEmbed()
                 .setAuthor({name: `${scores[0].beatmap.song_name} ⭐ ${star_rating}`, iconURL: `https://a.chronoskia.com/${id_check.id}`})
